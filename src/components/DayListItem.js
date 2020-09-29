@@ -8,7 +8,7 @@ export default function DayListItem(props) {
     "day-list__item--full" : props.spopts === 0
   })
 
-  const formatSports = function(spots) {
+  const formatsSpots = function(spots) {
     if (spots > 1) {
       return `${spots} spots remaining`;
     } else if (spots === 1){
@@ -16,13 +16,12 @@ export default function DayListItem(props) {
     } else {
       return 'no spots remaining'
     }
-
   }
 
   return (
     <li className={dayListItemClass} onClick={() => props.setDay(props.name)}>
       <h2 className="text--regular">{props.name}</h2>
-      <h3 className="text--light">{formatSports(props.spots)}</h3>
+      <h3 className="text--light">{formatsSpots(props.spots)}</h3>
     </li>
   );
 }
