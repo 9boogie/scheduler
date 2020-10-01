@@ -4,6 +4,7 @@ import Header from "components/Appointment/Header.js";
 import Empty from "components/Appointment/Empty.js";
 import Show from "components/Appointment/Show.js";
 import classnames from 'classnames/bind';
+import { action } from '@storybook/addon-actions';
 
 export default function Appointment (props) {
   const lastClass = classnames("main", {
@@ -14,7 +15,7 @@ export default function Appointment (props) {
     <article className="appointment">
       <Header time={props.time} />
       <main className={lastClass}>
-        {props.interview? <Show interview={props.interview} /> : <Empty />}
+        {props.interview? <Show student={props.interview.student} interviewer={props.interview.interviewer} /> : <Empty />}
       </main>
     </article>
   );
