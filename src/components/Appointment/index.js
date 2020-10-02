@@ -8,8 +8,7 @@ import classnames from 'classnames/bind';
 export default function Appointment (props) {
   const lastClass = classnames("main", {
     "appointment:last-of-type": props.id === "last"
-  })
-  console.log('what is props?', props)
+  });
 
   return (
     <article className="appointment">
