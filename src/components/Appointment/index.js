@@ -4,12 +4,12 @@ import Header from "components/Appointment/Header.js";
 import Empty from "components/Appointment/Empty.js";
 import Show from "components/Appointment/Show.js";
 import classnames from 'classnames/bind';
-import { action } from '@storybook/addon-actions';
 
 export default function Appointment (props) {
   const lastClass = classnames("main", {
     "appointment:last-of-type": props.id === "last"
   })
+  console.log('what is props?', props)
 
   return (
     <article className="appointment">

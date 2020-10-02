@@ -1,4 +1,4 @@
-export function getAppointmentsForDay(state, day) {
+export default function getAppointmentsForDay(state, day) {
   const filteredDay = state.days.filter(filterDay => filterDay.name === day);
 
   if (filteredDay.length > 0) {
