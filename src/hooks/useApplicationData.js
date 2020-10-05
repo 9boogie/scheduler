@@ -10,6 +10,16 @@ const useApplicationData = () => {
   });
   const setDay = day => setState({ ...state, day });
 
+  const daysList = state.days[0];
+  const spots = { daysList };
+  console.log(spots.spots)
+  //console.log( daysList.map((eachDay) => {console.log('spots for each day is',eachDay.spots)}) );
+  console.log('total appointments', state.appointments)
+
+  const spotsRemain = function() {
+
+  };
+
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -20,12 +30,13 @@ const useApplicationData = () => {
       [id]: appointment
     };
     
-    return axios.put(`/api/appointments/${id}`, { interview })
+    return axios
+      .put(`/api/appointments/${id}`, { interview })
       .then(() => {
         setState((prev) => ({ ...prev, appointments }));
         return true;
       });
-  }
+  };
 
   const cancelInterview = (id) => {
     const appointment = {
@@ -42,7 +53,7 @@ const useApplicationData = () => {
         setState((prev) => ({ ...prev, appointments }));
         return true;
       });
-  }
+  };
 
   useEffect(() => {
     const promiseOne = axios.get(`/api/days`);
@@ -54,7 +65,6 @@ const useApplicationData = () => {
     Promise.all(promises)
     .then(Allresponses => {
      setState(prev => ({...prev, days: Allresponses[0].data, appointments: Allresponses[1].data, interviewers: Allresponses[2].data}));
-     
     });
 
   }, []);
