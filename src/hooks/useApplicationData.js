@@ -10,14 +10,27 @@ const useApplicationData = () => {
   });
   const setDay = day => setState({ ...state, day });
 
-  const daysList = state.days[0];
-  const spots = { daysList };
-  console.log(spots.spots)
-  //console.log( daysList.map((eachDay) => {console.log('spots for each day is',eachDay.spots)}) );
-  console.log('total appointments', state.appointments)
+  const spotsRemain = function(id, interview) {
+    const num = () => {
+      if (!interview) {
+        return 1;
+      } else if (!state.appointments[id].interview) {
+        return -1;
+      } else {
+        return 0;
+      }
+    };
+    const days = state.days.map((eachDay) => {
+      if(eachDay.name === state.day) {
+        return {
+          ...eachDay,
+          spots: eachDay.spots + num()
+        }
+      }
+      return eachDay;
+    });
 
-  const spotsRemain = function() {
-
+    return days;
   };
 
   const bookInterview = (id, interview) => {
@@ -29,11 +42,12 @@ const useApplicationData = () => {
       ...state.appointments,
       [id]: appointment
     };
+    const days = spotsRemain(id, interview);
     
     return axios
       .put(`/api/appointments/${id}`, { interview })
       .then(() => {
-        setState((prev) => ({ ...prev, appointments }));
+        setState((prev) => ({ ...prev, appointments, days }));
         return true;
       });
   };
@@ -47,10 +61,11 @@ const useApplicationData = () => {
       ...state.appointments,
       [id]: appointment
     };
+    const days = spotsRemain(id);
     
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
-        setState((prev) => ({ ...prev, appointments }));
+        setState((prev) => ({ ...prev, appointments, days}));
         return true;
       });
   };
