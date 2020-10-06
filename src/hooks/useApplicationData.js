@@ -71,9 +71,9 @@ const useApplicationData = () => {
   };
 
   useEffect(() => {
-    const promiseOne = axios.get(`/api/days`);
-    const promiseTwo = axios.get('api/appointments');
-    const promiseThree = axios.get('api/interviewers');
+    const promiseOne = axios.get('/api/days');
+    const promiseTwo = axios.get('/api/appointments');
+    const promiseThree = axios.get('/api/interviewers');
 
     const promises = [promiseOne, promiseTwo, promiseThree];
     
