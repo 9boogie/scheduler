@@ -6,12 +6,17 @@ const Form = (props) => {
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
+  function cancel() {
+    setName("");
+    props.onCancel();
+  }
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
       return;
     }
-  
+    
+    setError('');
     props.onSave(name, interviewer);
   };
 
@@ -36,7 +41,7 @@ const Form = (props) => {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={props.onCancel}>Cancel</Button>
+          <Button danger onClick={cancel}>Cancel</Button>
           <Button confirm onClick={validate}>Save</Button>
         </section>
       </section>
