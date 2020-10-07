@@ -10,6 +10,7 @@ const useApplicationData = () => {
   });
   const setDay = (day) => setState({ ...state, day });
 
+  // Update the remaining spots on each day
   const spotsRemain = function (id, interview) {
     const num = () => {
       if (!interview) {
@@ -33,6 +34,7 @@ const useApplicationData = () => {
     return days;
   };
 
+  // send put request when user books the interview
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -50,6 +52,7 @@ const useApplicationData = () => {
     });
   };
 
+  // send delete request when user wants to cancel the appointment 
   const cancelInterview = (id) => {
     const appointment = {
       ...state.appointments[id],

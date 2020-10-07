@@ -24,6 +24,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  // Book the new appointment
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -38,6 +39,7 @@ export default function Appointment(props) {
       .catch((error) => transition(ERROR_SAVE, true));
   }
 
+  // Cancel the existing appointment
   const deleteInterview = function () {
     transition(DELETING, true);
     props

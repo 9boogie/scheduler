@@ -1,3 +1,4 @@
+// Get the interview data using interviewer id
 export default function getInterview(state, interview) {
   let result = {};
   const interviewers = state.interviewers;

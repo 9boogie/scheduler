@@ -1,3 +1,4 @@
+// Generate the interviewers for each day
 const getInterviewersForDay = function (state, day) {
   const filteredDay = state.days.filter((filterDay) => filterDay.name === day);
 
