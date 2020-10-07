@@ -5,16 +5,16 @@ import Appointment from "components/Appointment/index.js";
 import getAppointmentsForDay from "helpers/selectors.js";
 import getInterview from "helpers/interview.js";
 import getInterviewersForDay from "helpers/getInterviewersForDay.js";
-import useApplicationData from 'hooks/useApplicationData.js';
+import useApplicationData from "hooks/useApplicationData.js";
 
 export default function Application(props) {
   const {
     state,
     setDay,
     bookInterview,
-    cancelInterview
+    cancelInterview,
   } = useApplicationData();
-  const dailyAppointments = getAppointmentsForDay(state,state.day);
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
 
   const schedule = dailyAppointments.map((appointment) => {
@@ -30,11 +30,11 @@ export default function Application(props) {
       />
     );
   });
-  
+
   return (
     <main className="layout">
       <section className="sidebar">
-          <img
+        <img
           className="sidebar--centered"
           src="images/logo.png"
           alt="Interview Scheduler"
@@ -42,11 +42,7 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <ul>
-            <DayList
-              days={state.days}
-              day={state.day}
-              setDay={setDay}
-            />
+            <DayList days={state.days} day={state.day} setDay={setDay} />
           </ul>
         </nav>
         <img

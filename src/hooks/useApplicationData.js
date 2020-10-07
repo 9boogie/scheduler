@@ -1,16 +1,16 @@
-import {useState, useEffect} from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const useApplicationData = () => {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
-    interviewers: {}
+    interviewers: {},
   });
-  const setDay = day => setState({ ...state, day });
+  const setDay = (day) => setState({ ...state, day });
 
-  const spotsRemain = function(id, interview) {
+  const spotsRemain = function (id, interview) {
     const num = () => {
       if (!interview) {
         return 1;
@@ -21,11 +21,11 @@ const useApplicationData = () => {
       }
     };
     const days = state.days.map((eachDay) => {
-      if(eachDay.name === state.day) {
+      if (eachDay.name === state.day) {
         return {
           ...eachDay,
-          spots: eachDay.spots + num()
-        }
+          spots: eachDay.spots + num(),
+        };
       }
       return eachDay;
     });
@@ -36,55 +36,55 @@ const useApplicationData = () => {
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview }
+      interview: { ...interview },
     };
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment,
     };
     const days = spotsRemain(id, interview);
-    
-    return axios
-      .put(`/api/appointments/${id}`, { interview })
-      .then(() => {
-        setState((prev) => ({ ...prev, appointments, days }));
-        return true;
-      });
+
+    return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
+      setState((prev) => ({ ...prev, appointments, days }));
+      return true;
+    });
   };
 
   const cancelInterview = (id) => {
     const appointment = {
       ...state.appointments[id],
-      interview: null
+      interview: null,
     };
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment,
     };
     const days = spotsRemain(id);
-    
-    return axios.delete(`/api/appointments/${id}`)
-      .then(() => {
-        setState((prev) => ({ ...prev, appointments, days}));
-        return true;
-      });
+
+    return axios.delete(`/api/appointments/${id}`).then(() => {
+      setState((prev) => ({ ...prev, appointments, days }));
+      return true;
+    });
   };
 
   useEffect(() => {
-    const promiseOne = axios.get('/api/days');
-    const promiseTwo = axios.get('/api/appointments');
-    const promiseThree = axios.get('/api/interviewers');
+    const promiseOne = axios.get("/api/days");
+    const promiseTwo = axios.get("/api/appointments");
+    const promiseThree = axios.get("/api/interviewers");
 
     const promises = [promiseOne, promiseTwo, promiseThree];
-    
-    Promise.all(promises)
-    .then(Allresponses => {
-     setState(prev => ({...prev, days: Allresponses[0].data, appointments: Allresponses[1].data, interviewers: Allresponses[2].data}));
-    });
 
+    Promise.all(promises).then((Allresponses) => {
+      setState((prev) => ({
+        ...prev,
+        days: Allresponses[0].data,
+        appointments: Allresponses[1].data,
+        interviewers: Allresponses[2].data,
+      }));
+    });
   }, []);
 
-  return {state, setDay, bookInterview, cancelInterview};
+  return { state, setDay, bookInterview, cancelInterview };
 };
 
 export default useApplicationData;

@@ -6,10 +6,10 @@ export default function getInterview(state, interview) {
   } else {
     result = interview;
     for (const interviewerId in interviewers) {
-      if (Number(interviewerId) === (interview.interviewer)){
+      if (Number(interviewerId) === interview.interviewer) {
         result.interviewer = interviewers[interviewerId];
       }
     }
     return result;
   }
-};
+}
