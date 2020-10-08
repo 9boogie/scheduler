@@ -9,9 +9,9 @@ Single Page Interview Scheduler with following behaviours:
   - A user is shown a status indicator while asynchronous operations are in progress
 
 ## Final Product
-!["Screenshot of Main Page(DeskTop Ver)"](https://github.com/9boogie/tweeter/blob/master/docs/tweet-main-page(DeskTop%20ver).png)
-!["Screenshot of Main Page(Mobile Ver)"](https://github.com/9boogie/tweeter/blob/master/docs/tweet-main-page(mobile%20ver).png)
-!["Screenshot of tweet error box"](https://github.com/9boogie/tweeter/blob/master/docs/tweet-error-msg.png)
+!["Screenshot of Main Page(DeskTop Ver)"](https://github.com/9boogie/scheduler/blob/master/docs/Main_Page.png)
+!["Screenshot of Booking Interview"](https://github.com/9boogie/scheduler/blob/master/docs/Booking_Interview.png)
+!["Screenshot of Edit/Delete interview"](https://github.com/9boogie/scheduler/blob/master/docs/Edit_Delete_Interview.png)
 
 ## Getting Started
 
