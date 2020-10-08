@@ -41,7 +41,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <ul>
+          <ul data-testid="day">
             <DayList days={state.days} day={state.day} setDay={setDay} />
           </ul>
         </nav>
